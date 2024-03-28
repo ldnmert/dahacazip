@@ -1,0 +1,85 @@
+<div class="generalmainpage">
+<div class="logolarrr">
+<img src="assets/MiGROS_Logo.png" alt="Migros Logo" class="logomigros">
+<img src="assets/A101_logo.svg.png" alt="Migros Logo" class="logoa101"> 
+
+ <img src="assets/carrefoursacom-logo.svg" alt="Migros Logo" class="logocarrefour">
+ <img src="assets/Logo_of_BİM.png" alt="Migros Logo" class="logobim">
+<img src="assets/sok.png" alt="Migros Logo" class="logosok"> 
+</div>
+<div class="bilesen">
+
+  <div class="dikdortgen">
+      <div class="urun-listesi" *ngIf="productMigros.length > 0">
+          <div class="urun" *ngFor="let product of productMigros">
+            <div class="urun-kapsul">
+              <p class="urun-ad">{{ product.name }}</p>
+              <img class="urun-resim" [src]="product.image" alt="{{ product.name }}">
+              <div class="fiyatlar">
+                  <p class="eski-fiyat">{{ product.priceWithoutDiscount }}</p>
+                  <p class="yeni-fiyat">{{ product.price }}</p>
+              </div>
+          </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="dikdortgen">
+      <div class="urun-listesi" *ngIf="productA101.length > 0">
+          <div class="urun" *ngFor="let product of productA101">
+            <div class="urun-kapsul">
+              <p class="urun-ad">{{ product.name }}</p>
+              <img class="urun-resim" [src]="product.image" alt="{{ product.name }}">
+              <div class="fiyatlar">
+                  <p class="eski-fiyat">{{ product.priceWithoutDiscount }}</p>
+                  <p class="yeni-fiyat">{{ product.price }}</p>
+              </div>
+          </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="dikdortgen">
+      <div class="urun-listesi" *ngIf="productCarrefour.length > 0">
+          <div class="urun" *ngFor="let product of productCarrefour">
+              <div class="urun-kapsul">
+                  <p class="urun-ad">{{ product.name }}</p>
+                  <img class="urun-resim" [src]="product.image" alt="{{ product.name }}">
+                  <div class="fiyatlar">
+                      <p class="eski-fiyat">{{ product.priceWithoutDiscount }}</p>
+                      <p class="yeni-fiyat">{{ product.price }}</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="dikdortgen">
+      <div class="urun-listesi" *ngIf="productBim.length > 0">
+          <div class="urun" *ngFor="let product of productBim">
+            <div class="urun-kapsul">
+              <p class="urun-ad">{{ product.name }}</p>
+              <img class="urun-resim" [src]="product.image" alt="{{ product.name }}">
+              <div class="fiyatlar">
+                  <p class="eski-fiyat">{{ product.priceWithoutDiscount }}</p>
+                  <p class="yeni-fiyat">{{ product.price }}</p>
+              </div>
+          </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="dikdortgen">
+    <div class="urun-listesi" *ngIf="productBim.length > 0">
+        <div class="urun" *ngFor="let product of productBim">
+            <p>{{ product.name }}</p>
+            <p>{{ product.priceWithoutDiscount }}</p>
+            <p>{{ product.price }}</p>
+        </div>
+    </div>
+ </div>
+
+
+
+</div>
+</div>
