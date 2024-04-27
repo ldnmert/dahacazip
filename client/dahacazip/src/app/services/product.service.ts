@@ -1,29 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Product } from '../classes/product';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  private apiUrl = 'http://localhost:8080/api'; // Backend'inizdeki API'nin URL'si
+  private apiUrl = 'http://localhost:8080'; 
 
   constructor(private http: HttpClient) { }
 
-  getProductsMigros(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/discount-products-migros`);
+  getDiscountProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.apiUrl}/discount/get-discount-products`);
   }
 
-  getProductsA101(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/discount-products-a101`);
-  }
 
-  getProductsCarrefour(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/discount-products-carrefour`);
-  }
-
-  getProductsBim(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/discount-products-bim`);
-  }
 }

@@ -1,3 +1,11 @@
+
+.siralakismi{
+    position: absolute;
+    display: flex;
+    top: 19px;
+    z-index: 999;
+}
+
 .dikdortgen {
     width: 200px; /* Boyutlarınızı ayarlayın */
     height: 560px; /* Sabit yükseklik */
@@ -30,10 +38,10 @@
 
 /* Her bir dikdörtgenin çerçeve rengini farklı yapmak için örnek renkler */
 .dikdortgen:nth-child(1) {
-    border-color: #FF5733; /* Turuncu */
+    border-color: #f87538; /* Turuncu */
 }
 .dikdortgen:nth-child(2) {
-    border-color: #57b2f7; /* Mor */
+    border-color: #1ea0c8; /* Mor */
 }
 .dikdortgen:nth-child(3) {
     border-color: #0930a3; /* Mavi */
@@ -61,7 +69,7 @@
     margin-bottom: 10px;
 }
 .dikdortgen:nth-child(1) .urun-kapsul {
-    border: 2px solid #ea7114; /* Kırmızı */
+    border: 2px solid   #ea7114; /* Kırmızı */
 }
 
 .dikdortgen:nth-child(2) .urun-kapsul {
@@ -162,11 +170,47 @@
    
 
     position: relative;
-    top: 47.1px;
+    top: 16px;
 
     left: 7%;
    
 
  
     border-radius: 10px; 
+}
+
+
+
+
+input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    width: 300px; /* Genişlik ayarı */
+}
+
+.search-btn {
+    padding: 0; /* Butonun içeriği (resim) için padding'i sıfırla */
+    background: none; /* Arka planı temizle */
+    border: none;
+    cursor: pointer;
+}
+
+.search-btn img {
+    width: 30px; /* İstediğiniz boyuta göre ayarlayabilirsiniz */
+    height: auto;
+}
+
+button[type="submit"]:hover {
+    opacity: 0.7; /* Butona hover olduğunda opacity düşürme (opsiyonel) */
+}
+
+.search-container{
+    position: relative;
+    display: flex;
+    /* background-color: #1212b5; */
+    justify-content: center; /* Yatayda ortala */
+    z-index: 10;
+
 }

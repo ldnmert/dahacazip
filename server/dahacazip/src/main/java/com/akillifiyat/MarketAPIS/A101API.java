@@ -15,15 +15,17 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.springframework.stereotype.Component;
 
-import com.akillifiyat.entity.A101Discount;
-import com.akillifiyat.product.Product;
+import com.akillifiyat.entity.DiscountProduct;
+import com.akillifiyat.entity.Product;
+
+
 
 @Component
 public class A101API {
 
-	public List<A101Discount> discountProducts() {
+	public List<DiscountProduct> discountProducts() {
 
-		List<A101Discount> a101DiscountProducts = new ArrayList();
+		List<DiscountProduct> discountProducts = new ArrayList();
 
 		try {
 			String apiUrl = "https://www.a101.com.tr/_next/data/lh1Jsf0-GK7rz8lmb18NW/tr/ekstra/haftanin-yildizlari.json?promotion=haftanin-yildizlari";
@@ -51,8 +53,11 @@ public class A101API {
 							.getString("discountedText");
 					String resim = mainShoppingLists.getJSONObject(i).getJSONArray("images").getJSONObject(0)
 							.getString("url");
-					A101Discount a101Discount = new A101Discount(isim, indirimli, indirimsiz, resim);
-					a101DiscountProducts.add(a101Discount);
+					
+					Float indirimsizFloat = Float.valueOf(indirimsiz.replace("₺", "").replace(",", "."));
+					Float indirimliFloat = Float.valueOf(indirimli.replace("₺", "").replace(",", "."));
+					DiscountProduct discountProduct = new DiscountProduct(isim, indirimliFloat, indirimsizFloat, resim, "A101");
+					discountProducts.add(discountProduct);
 				}
 			} else {
 				System.out.println("Failed to retrieve JSON. Response code: " + responseCode);
@@ -60,11 +65,11 @@ public class A101API {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return a101DiscountProducts;
+		return discountProducts;
 	}
 
 	
-	static List<String> getJSON() {
+	private List<String> getJSON() {
 
 		List<String> jsons = new ArrayList<>();
 
@@ -93,7 +98,9 @@ public class A101API {
 			"temizlik-urunleri", "kisisel-bakim", "kagit-urunleri", "elektronik", "anne-bebek", "ev-yasam",
 			"kitap-kirtasiye-oyuncak", "evcil-hayvan", "bayram" };
 
-	static void a101literallyapi() {
+	public List<Product> a101AllProducts() {
+		
+		List<Product> allProductsA101 = new ArrayList();
 		List<String> allJSONS = getJSON();
 
 		for (int k = 0; k < allJSONS.size(); k++) {
@@ -125,27 +132,35 @@ public class A101API {
 					
 					JSONObject price = product.getJSONObject("price");
 					JSONArray image = product.getJSONArray("images");
-					JSONObject getImage = image.getJSONObject(1);
-
+					
+					JSONObject getImage;
+					
+					
+					if(image.getJSONObject(0).getString("imageType").equals("product")) 
+						 getImage = image.getJSONObject(0);
+					else if(image.getJSONObject(1).getString("imageType").equals("product")) {
+						getImage = image.getJSONObject(1);
+					}
+					else
+						getImage = image.getJSONObject(2);
+	
+				
+	
 					String normalPrice = price.getString("normalStr");
 					String discountedPrice = price.getString("discountedStr");
-
-					StringBuilder sbNormalPrice = new StringBuilder();
-					StringBuilder sbDiscountedPrice = new StringBuilder();
-					sbNormalPrice.append(normalPrice);
-					sbDiscountedPrice.append(discountedPrice);
-
-					sbNormalPrice.deleteCharAt(0);
-					sbDiscountedPrice.deleteCharAt(0);
-
+					String fixedNormalPrice = normalPrice.replace("₺", "").replace(",", ".");
 					
+					
+					float normalPriceFloat = Float.valueOf(fixedNormalPrice);
+								
 
 					String imageURL = getImage.getString("url");
 
-					System.out.println("Product Name: " + productName);
-					System.out.println(sbNormalPrice);
-					System.out.println(sbDiscountedPrice);
-					System.out.println(imageURL);
+					System.out.println(productName);
+					Product product2 = new Product(productName, normalPriceFloat, imageURL, "A101");
+					allProductsA101.add(product2);
+					
+					
 					}
 					catch(Exception e) {
 						
@@ -156,10 +171,10 @@ public class A101API {
 				e.printStackTrace();
 			}
 
-			System.out.println(++x + categories[k]
-					+ "BITTI -----------------------------------------------------------------------------------------------------");
+		
 
 		}
+		return allProductsA101;
 
 	}
 

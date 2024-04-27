@@ -1,5 +1,7 @@
 package com.akillifiyat.MarketAPIS;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +17,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.stereotype.Component;
 
-import com.akillifiyat.entity.CarrefourDiscount;
-import com.akillifiyat.product.Product;
+import com.akillifiyat.entity.DiscountProduct;
+import com.akillifiyat.entity.Product;
 
 @Component
 public class CarrefourAPI {
@@ -24,73 +26,73 @@ public class CarrefourAPI {
 		return url.replace(partToRemove, "");
 	}
 
-	public List<CarrefourDiscount> discountProducts() {
-		List<CarrefourDiscount> carrefourDiscountProducts = new ArrayList();
-		try {
-			Document document = Jsoup.connect("https://www.carrefoursa.com/").get();
-			Elements elements = document.getElementsByClass("product_click");
-
-			for (Element element : elements) {
-				try {
-					String html = element.html();
-					Document test = Jsoup.parse(html);
-					Element itemNameElement;
-					Element itemPriceElement;
-					Element imgElement;
-					Element ayrintiLink;
-					Element itemEskiFiyat;
-					if (test.select("img") != null && test.select("img").first() != null
-							&& test.select(".item-name") != null && test.select(".item-name").first() != null
-							&& test.select(".item-price") != null) {
-						itemNameElement = test.select(".item-name").first();
-						itemPriceElement = test.select(".item-price").first();
-						imgElement = test.select("img").first();
-						String itemName = itemNameElement.text();
-
-						if (itemPriceElement.attr("content") != null) {
-
-							String itemPrice = itemPriceElement.attr("content");
-
-							DecimalFormat decimalFormat = new DecimalFormat("#.##");
-
-							// Belirtilen formata göre sayıyı biçimlendir
-							itemPrice = decimalFormat.format(Double.parseDouble(itemPrice));
-
-							String dataSrc = imgElement.attr("data-src");
-
-							ayrintiLink = test.selectFirst("a");
-							String ayrintLinkString = "https://www.carrefoursa.com" + ayrintiLink.attr("href");
-
-							ayrintLinkString = removePartFromUrl(ayrintLinkString, "/quickView");
-
-							itemEskiFiyat = test.select("span.priceLineThrough.js-variant-price").first();
-							if (itemEskiFiyat != null) {
-								String[] fiyatParcalari = itemEskiFiyat.text().split(" TL");
-
-								// İlk parçayı seçme (519,90 TL'yi almak)
-								String eskiFiyatString = fiyatParcalari[0];
-
-								// System.out.println(itemName);
-								
-								CarrefourDiscount carrefourDiscount = new CarrefourDiscount(itemName, itemPrice, eskiFiyatString, dataSrc);
-								carrefourDiscountProducts.add(carrefourDiscount);
-
-							}
-
-						}
-
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return carrefourDiscountProducts;
-	}
+//	public List<DiscountProduct> discountProducts() {
+//		List<DiscountProduct> DiscountProductProducts = new ArrayList();
+//		try {
+//			Document document = Jsoup.connect("https://www.carrefoursa.com/").get();
+//			Elements elements = document.getElementsByClass("product_click");
+//
+//			for (Element element : elements) {
+//				try {
+//					String html = element.html();
+//					Document test = Jsoup.parse(html);
+//					Element itemNameElement;
+//					Element itemPriceElement;
+//					Element imgElement;
+//					Element ayrintiLink;
+//					Element itemEskiFiyat;
+//					if (test.select("img") != null && test.select("img").first() != null
+//							&& test.select(".item-name") != null && test.select(".item-name").first() != null
+//							&& test.select(".item-price") != null) {
+//						itemNameElement = test.select(".item-name").first();
+//						itemPriceElement = test.select(".item-price").first();
+//						imgElement = test.select("img").first();
+//						String itemName = itemNameElement.text();
+//
+//						if (itemPriceElement.attr("content") != null) {
+//
+//							String itemPrice = itemPriceElement.attr("content");
+//
+//							DecimalFormat decimalFormat = new DecimalFormat("#.##");
+//
+//							// Belirtilen formata göre sayıyı biçimlendir
+//							itemPrice = decimalFormat.format(Double.parseDouble(itemPrice));
+//
+//							String dataSrc = imgElement.attr("data-src");
+//
+//							ayrintiLink = test.selectFirst("a");
+//							String ayrintLinkString = "https://www.carrefoursa.com" + ayrintiLink.attr("href");
+//
+//							ayrintLinkString = removePartFromUrl(ayrintLinkString, "/quickView");
+//
+//							itemEskiFiyat = test.select("span.priceLineThrough.js-variant-price").first();
+//							if (itemEskiFiyat != null) {
+//								String[] fiyatParcalari = itemEskiFiyat.text().split(" TL");
+//
+//								// İlk parçayı seçme (519,90 TL'yi almak)
+//								String eskiFiyatString = fiyatParcalari[0];
+//
+//								// System.out.println(itemName);
+//								
+//								DiscountProduct DiscountProduct = new DiscountProduct(itemName, itemPrice, eskiFiyatString, dataSrc, "CARREFOUR");
+//								DiscountProductProducts.add(DiscountProduct);
+//
+//							}
+//
+//						}
+//
+//					}
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//		return DiscountProductProducts;
+//	}
 	
 	
 	
@@ -107,8 +109,10 @@ public class CarrefourAPI {
             "1261", "1270", "1266"
         };
 
-		 void ss() {
-			int i = 0;
+		public List<Product> getAllProducts() {
+			int qwes = 0;
+			List<Product> list = new ArrayList();
+			
 
 			WebDriver driver = new ChromeDriver(new ChromeOptions().addArguments("--headless"));
 			for(int w = 0 ; w < numbers.length;w++) {
@@ -125,21 +129,31 @@ public class CarrefourAPI {
 //					WebElement ayrintiLink = element.findElement(By.tagName("a"));
 
 					String itemName = itemNameElement.getText();
-					String itemPrice = itemPriceElement.getAttribute("content");
+					String itemPriceSalt = (itemPriceElement.getAttribute("content"));
+					
+					   BigDecimal number = new BigDecimal(itemPriceSalt);
+				        
+				        BigDecimal formatted = number.setScale(2, RoundingMode.HALF_UP);
+					
+				    String itemPrice = formatted.toString();
+				    
+				    float floatPrice = Float.valueOf(itemPrice);
+					
 					String dataSrc = imgElement.getAttribute("data-src");
-
-					System.out.println(itemName + ++i);
-					System.out.println(itemPrice);
-					System.out.println(dataSrc);
+				
+					
+					Product c = new Product(itemName, floatPrice, dataSrc, "CARREFOUR");
+					list.add(c);
 
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 			
-			System.out.println(numbers[w] + "bitti --------------------------------");
+			
 		}
 			driver.quit();
+			return list;
 		}
 
 }

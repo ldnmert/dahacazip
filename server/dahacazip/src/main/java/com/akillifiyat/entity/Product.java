@@ -13,30 +13,27 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class MigrosDiscount {
+public class Product {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
-
-	@Column(unique = true)
-	String name;
+	
+	@Column(name = "nameproduct")
+	String nameproduct;
 
 	Float price;
 
-	Float priceWithoutDiscount;
-
 	String image;
-
-	Integer discountRate;
 	
-	public MigrosDiscount(String name, Float priceWithoutDiscount, Float price, Integer discountRate ,String image) {
+	
+	String marketName;
 
-		this.name = name;
+	public Product(String nameproduct, Float price, String image, String marketName) {
+		this.marketName = marketName;
+		this.nameproduct = nameproduct;
 		this.price = price;
-		this.priceWithoutDiscount = priceWithoutDiscount;
 		this.image = image;
-		this.discountRate = discountRate;
 	}
-
+	
 }
