@@ -23,17 +23,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	@Query(value = "SELECT * FROM product WHERE MATCH(nameproduct) AGAINST (:keyword IN NATURAL LANGUAGE MODE)", nativeQuery = true)
 	List<Product> findProducts(@Param("keyword") String keyword);
 	
-//	@Query(value = "SELECT * FROM product WHERE nameproduct LIKE %:keyword%", nativeQuery = true)
-//	List<Product> findProducts(@Param("keyword") String keyword);
 
-//	@Query(value = "SELECT * FROM (SELECT *, ROW_NUMBER() OVER (PARTITION BY market_name ORDER BY price DESC) AS row_num FROM product WHERE MATCH(nameproduct) AGAINST (:keyword IN NATURAL LANGUAGE MODE)) AS ranked WHERE row_num <= 20", nativeQuery = true)
-//	List<Product> findProductsDesc(@Param("keyword") String keyword);
-	
-//	@Query(value = "SELECT * FROM (SELECT *, ROW_NUMBER() OVER (PARTITION BY market_name ORDER BY price ASC) AS row_num FROM product WHERE MATCH(nameproduct) AGAINST (:keyword IN NATURAL LANGUAGE MODE)) AS ranked WHERE row_num <= 20", nativeQuery = true)
-//	List<Product> findProductsAsc(@Param("keyword") String keyword);
-	
-//	@Query(value = "SELECT * FROM (SELECT *, ROW_NUMBER() OVER (PARTITION BY market_name) AS row_num FROM product WHERE MATCH(nameproduct) AGAINST (:keyword IN NATURAL LANGUAGE MODE)) AS ranked WHERE row_num <= 20", nativeQuery = true)
-//	List<Product> findProducts(@Param("keyword") String keyword);
 	
 
 
