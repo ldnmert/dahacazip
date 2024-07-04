@@ -1,7 +1,5 @@
 package com.akillifiyat.scheduled;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -10,8 +8,6 @@ import com.akillifiyat.MarketAPIS.A101API;
 import com.akillifiyat.MarketAPIS.CarrefourAPI;
 import com.akillifiyat.MarketAPIS.MigrosAPI;
 import com.akillifiyat.MarketAPIS.SokAPI;
-import com.akillifiyat.entity.DiscountProduct;
-import com.akillifiyat.entity.Product;
 import com.akillifiyat.repository.DiscountProductRepository;
 import com.akillifiyat.repository.ProductRepository;
 
@@ -41,7 +37,10 @@ public class LoadToDatabase {
 	}
 
 
-
+//	@Scheduled(fixedRate = 3600)
+//	void qwe() {
+//		sokAPI.getAllProducts();
+//	}
 
 	
 }

@@ -68,7 +68,7 @@ public class SokAPI {
 						float itemPriceFloat = Float.valueOf(itemPrice);
 						
 						String itemPhotoURL = itemPhotoSrc.getAttribute("src");
-						System.out.println(itemName + ++jx);
+						System.out.println(itemName + ++jx + itemPrice);
 						Product sokProduct = new Product(itemName, itemPriceFloat, itemPhotoURL, "SOK");
 
 						allSokProducts.add(sokProduct);
@@ -85,5 +85,8 @@ public class SokAPI {
 
 		return allSokProducts;
 	}
+	
+
+	
 
 }

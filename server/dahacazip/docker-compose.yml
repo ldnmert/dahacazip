@@ -1,35 +1,29 @@
-
-
-version: "3.8"
+version: '3.9'
 
 services:
-  server:
-    build: .
-    restart: always
-    ports:
-      - "8080:8080"
-    depends_on:
-      - mysqldb
-  mysqldb:
-    image: "mysql:5.7"
-    restart: always
-    ports:
-      - "3306:3306"
+  mysql:
+    image: mysql:latest
     environment:
+      MYSQL_ROOT_PASSWORD: 1234
       MYSQL_DATABASE: akilli-fiyat
       MYSQL_USER: test_kullanici
       MYSQL_PASSWORD: 1234
-      MYSQL_ROOT_PASSWORD: 456321
+    ports:
+      - "3355:3355"
+    volumes:
+      - mysql_data:/var/lib/mysql
 
+  spring-app:
+    build: .
+    restart: always
+    environment:
+      DB_URL: jdbc:mysql://mysql:3355/akilli-fiyat?useSSL=false
+      DB_USERNAME: test_kullanici
+      DB_PASSWORD: 1234
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
 
-
-
-
-
-
-
-
-
-
-
-
+volumes:
+  mysql_data:

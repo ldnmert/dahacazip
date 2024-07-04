@@ -2,17 +2,39 @@
 .siralakismi{
     position: absolute;
     display: flex;
+    margin-left: 80%;
     top: 19px;
     z-index: 999;
+}
+.siralakismi select {
+    padding: 3px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.siralakismi label {
+    margin-right: 2px;
+    font-size: 22px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+}
+.siralakismi select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
 }
 
 .dikdortgen {
     width: 200px; /* Boyutlarınızı ayarlayın */
-    height: 560px; /* Sabit yükseklik */
+    height: 540px; /* Sabit yükseklik */
     border: 4px solid; /* Çerçeve */
     /* margin-bottom: 10px; */
      /* Dikey aralık */
-     
+     background-color: white;
     margin-top: 70px;
     
     /* margin-right: 10px; */   
@@ -24,6 +46,7 @@
     text-align: center; /* Yazıları ortala */
     font-family: Arial, sans-serif
 }
+
 .dikdortgen::-webkit-scrollbar {
     width: 5px; /* Set your desired width here */
 }
@@ -137,14 +160,14 @@
 .logoa101{
     margin-top: 11px;
     position: absolute;
-    left: 23.5%; /* Özel pozisyon değeri */
+    left: 30.5%; /* Özel pozisyon değeri */
     width: 145px; /* Genişlik */
     height: auto;
 }
 .logocarrefour{
     margin-top: 20px;
     position: absolute;
-    left: 42%; 
+    left: 56%; 
     width: 220px; /* Genişlik */
     height: auto;
    
@@ -183,12 +206,18 @@
 
 
 input[type="text"] {
-    padding: 10px;
+    padding: 13px;
     border: 1px solid #ccc;
     border-radius: 5px 0 0 5px;
     outline: none;
     width: 300px; /* Genişlik ayarı */
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    
 }
+.search-container input[type="text"]::placeholder {
+    color: #aaa;
+} 
 
 .search-btn {
     padding: 0; /* Butonun içeriği (resim) için padding'i sıfırla */
@@ -212,5 +241,15 @@ button[type="submit"]:hover {
     /* background-color: #1212b5; */
     justify-content: center; /* Yatayda ortala */
     z-index: 10;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 
+}
+.logo{
+    height: 64px;
+    margin-left: 25px;
+    position: absolute;
+    z-index: 999;
 }

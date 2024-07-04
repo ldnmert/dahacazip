@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/akilli-fiyat
+    username: test_kullanici
+    password: 1234
+ 
+    
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    
