@@ -1,4 +1,4 @@
-<img src="assets/logo.jpeg" alt="Logo" class="logo">
+<!-- <img src="assets/logo.jpeg" alt="Logo" class="logo"> -->
 <div class="search-container">
 
     <input type="text" placeholder="Bir şey bul" #searchInput (keydown.enter)="submitSearch(searchInput.value)">
@@ -10,7 +10,7 @@
     <div class="siralakismi">
         <label for="sort">Sıralama  :</label>
         <select [(ngModel)]="filters.sort" name="sort" (ngModelChange)="submitSearch(searchInput.value)">
-            <!-- <option value="">Sıralama Seçiniz</option> -->
+    
             <option value="">En Alakalı</option>
             <option value="ASC">Fiyata Göre Artan</option>
             <option value="DESC">Fiyata Göre Azalan</option>
@@ -26,7 +26,7 @@
         <img src="assets/A101_logo.svg.png" alt="Migros Logo" class="logoa101">
 
         <img src="assets/carrefoursacom-logo.svg" alt="Migros Logo" class="logocarrefour">
-        <!-- <img src="assets/Logo_of_BİM.png" alt="Migros Logo" class="logobim"> -->
+        
         <img src="assets/sok.png" alt="Migros Logo" class="logosok">
     </div>
     <div class="bilesen">
@@ -76,20 +76,7 @@
             </div>
         </div>
 
-        <!-- <div class="dikdortgen">
-      <div class="urun-listesi" *ngIf="productBim.length > 0">
-          <div class="urun" *ngFor="let product of productBim">
-            <div class="urun-kapsul">
-              <p class="urun-ad">{{ product.nameproduct }}</p>
-              <img class="urun-resim" [src]="product.image" alt="{{ product.nameproduct }}">
-              <div class="fiyatlar">
-                  <p class="eski-fiyat">{{ product.priceWithoutDiscount }}</p>
-                  <p class="yeni-fiyat">{{ product.price }}&#8378;</p>
-              </div>
-          </div>
-          </div>
-      </div>
-  </div> -->
+    
 
         <div class="dikdortgen">
             <div class="urun-listesi" *ngIf="productSok.length > 0">

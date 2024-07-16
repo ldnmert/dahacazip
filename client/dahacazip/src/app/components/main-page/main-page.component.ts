@@ -20,7 +20,7 @@ import { EventEmitter } from 'node:stream';
     constructor(public productService: ProductService, public searchService: SearchService){}
 
     filters = {
-      sort: '' // Başlangıçta sıralama filtresi boş olacak
+      sort: '' 
     };
 
 

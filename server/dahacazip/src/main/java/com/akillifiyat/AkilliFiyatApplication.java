@@ -10,7 +10,7 @@ public class AkilliFiyatApplication {
 
 	public static void main(String[] args) {	
 
-		System.out.println("aaaa");
+		
 		SpringApplication.run(AkilliFiyatApplication.class, args);
 	}
 

@@ -18,7 +18,7 @@ import com.akillifiyat.entity.Product;
 @Component
 public class SokAPI {
 
-	private  String[] ewq = { "meyve-ve-sebze-c-20", "et-ve-tavuk-ve-sarkuteri-c-160", "anne-bebek-ve-cocuk-c-20634",
+	private String[] ewq = { "meyve-ve-sebze-c-20", "et-ve-tavuk-ve-sarkuteri-c-160", "anne-bebek-ve-cocuk-c-20634",
 			"atistirmaliklar-c-20376", "sut-ve-sut-urunleri-c-460", "kahvaltilik-c-890", "ekmek-ve-pastane-c-1250",
 			"dondurma-c-31102", "dondurulmus-urunler-c-1550", "yemeklik-malzemeler-c-1770", "icecek-c-20505",
 			"kisisel-bakim-ve-kozmetik-c-20395", "temizlik-c-20647", "kagit-urunler-c-20875", "evcil-dostlar-c-20880",
@@ -63,10 +63,10 @@ public class SokAPI {
 
 						String itemName = itemNameElement.getText();
 						String itemPriceSalt = itemPriceElement.getText();
-						String itemPrice = itemPriceSalt.replace("₺", "").replace(",", "."); 
+						String itemPrice = itemPriceSalt.replace("₺", "").replace(",", ".");
 
 						float itemPriceFloat = Float.valueOf(itemPrice);
-						
+
 						String itemPhotoURL = itemPhotoSrc.getAttribute("src");
 						System.out.println(itemName + ++jx + itemPrice);
 						Product sokProduct = new Product(itemName, itemPriceFloat, itemPhotoURL, "SOK");
@@ -74,7 +74,8 @@ public class SokAPI {
 						allSokProducts.add(sokProduct);
 
 					} catch (Exception e) {
-						System.out.println("bir urun yok --------------------------------------------------------------------------------------------");
+						System.out.println(
+								"bir urun yok --------------------------------------------------------------------------------------------");
 					}
 				}
 
@@ -85,8 +86,5 @@ public class SokAPI {
 
 		return allSokProducts;
 	}
-	
-
-	
 
 }

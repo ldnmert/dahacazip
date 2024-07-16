@@ -126,13 +126,13 @@ public class MigrosAPI {
 							JSONObject iteration = productsArray.getJSONObject(j);
 
 							String productName = iteration.getString("name");
-						Float productPrice = iteration.getFloat("regularPrice")/100;
-					
-						String productPhoto = iteration.getJSONArray("images").getJSONObject(0).getJSONObject("urls")
-								.getString("PRODUCT_DETAIL");
-						
-						allMigrosProducts.add(new Product(productName, productPrice, productPhoto, "MIGROS"));
-					
+							Float productPrice = iteration.getFloat("regularPrice") / 100;
+
+							String productPhoto = iteration.getJSONArray("images").getJSONObject(0)
+									.getJSONObject("urls").getString("PRODUCT_DETAIL");
+
+							allMigrosProducts.add(new Product(productName, productPrice, productPhoto, "MIGROS"));
+
 						}
 
 					} else {
@@ -143,7 +143,6 @@ public class MigrosAPI {
 					e.printStackTrace();
 				}
 
-			
 			}
 			System.out.println(i + 1);
 		}

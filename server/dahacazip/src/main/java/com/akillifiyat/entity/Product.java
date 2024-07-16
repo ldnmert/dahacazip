@@ -18,15 +18,14 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;
-	
+
 	@Column(name = "nameproduct")
 	String nameproduct;
 
 	Float price;
 
 	String image;
-	
-	
+
 	String marketName;
 
 	public Product(String nameproduct, Float price, String image, String marketName) {
@@ -35,5 +34,5 @@ public class Product {
 		this.price = price;
 		this.image = image;
 	}
-	
+
 }

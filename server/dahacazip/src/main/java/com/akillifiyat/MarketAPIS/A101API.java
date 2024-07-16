@@ -18,8 +18,6 @@ import org.springframework.stereotype.Component;
 import com.akillifiyat.entity.DiscountProduct;
 import com.akillifiyat.entity.Product;
 
-
-
 @Component
 public class A101API {
 
@@ -53,10 +51,11 @@ public class A101API {
 							.getString("discountedText");
 					String resim = mainShoppingLists.getJSONObject(i).getJSONArray("images").getJSONObject(0)
 							.getString("url");
-					
+
 					Float indirimsizFloat = Float.valueOf(indirimsiz.replace("₺", "").replace(",", "."));
 					Float indirimliFloat = Float.valueOf(indirimli.replace("₺", "").replace(",", "."));
-					DiscountProduct discountProduct = new DiscountProduct(isim, indirimliFloat, indirimsizFloat, resim, "A101");
+					DiscountProduct discountProduct = new DiscountProduct(isim, indirimliFloat, indirimsizFloat, resim,
+							"A101");
 					discountProducts.add(discountProduct);
 				}
 			} else {
@@ -68,7 +67,6 @@ public class A101API {
 		return discountProducts;
 	}
 
-	
 	private List<String> getJSON() {
 
 		List<String> jsons = new ArrayList<>();
@@ -78,8 +76,7 @@ public class A101API {
 				Document document = Jsoup.connect("https://www.a101.com.tr/kapida/" + categories[i]).get();
 
 				Element elements = document.getElementById("__NEXT_DATA__");
-				String xd = elements.toString().replace("<script id=\"__NEXT_DATA__\" type=\"application/json\">",
-						"");
+				String xd = elements.toString().replace("<script id=\"__NEXT_DATA__\" type=\"application/json\">", "");
 				String yeah = xd.toString().replace("</script>", "");
 
 				jsons.add(yeah);
@@ -90,16 +87,17 @@ public class A101API {
 			}
 		}
 		return jsons;
-		
+
 	}
+
 	static int x = 0;
 	static String[] categories = { "sut-urunleri-kahvaltilik", "meyve-sebze", "et-balik-tavuk", "firindan",
-			"temel-gida", "atistirmalik", "icecek", "donuk-hazir-yemek-meze", "tatli", "dondurma",
-			"temizlik-urunleri", "kisisel-bakim", "kagit-urunleri", "elektronik", "anne-bebek", "ev-yasam",
-			"kitap-kirtasiye-oyuncak", "evcil-hayvan", "bayram" };
+			"temel-gida", "atistirmalik", "icecek", "donuk-hazir-yemek-meze", "tatli", "dondurma", "temizlik-urunleri",
+			"kisisel-bakim", "kagit-urunleri", "elektronik", "anne-bebek", "ev-yasam", "kitap-kirtasiye-oyuncak",
+			"evcil-hayvan", "bayram" };
 
 	public List<Product> a101AllProducts() {
-		
+
 		List<Product> allProductsA101 = new ArrayList();
 		List<String> allJSONS = getJSON();
 
@@ -124,54 +122,44 @@ public class A101API {
 				}
 
 				for (int i = 0; i < allProducts.length(); i++) {
-				
+
 					try {
-					JSONObject product = allProducts.getJSONObject(i);
-					JSONObject attributes = product.getJSONObject("attributes");
-					String productName = attributes.getString("name");
-					
-					JSONObject price = product.getJSONObject("price");
-					JSONArray image = product.getJSONArray("images");
-					
-					JSONObject getImage;
-					
-					
-					if(image.getJSONObject(0).getString("imageType").equals("product")) 
-						 getImage = image.getJSONObject(0);
-					else if(image.getJSONObject(1).getString("imageType").equals("product")) {
-						getImage = image.getJSONObject(1);
-					}
-					else
-						getImage = image.getJSONObject(2);
-	
-				
-	
-					String normalPrice = price.getString("normalStr");
-					String discountedPrice = price.getString("discountedStr");
-					String fixedNormalPrice = normalPrice.replace("₺", "").replace(",", ".");
-					
-					
-					float normalPriceFloat = Float.valueOf(fixedNormalPrice);
-								
+						JSONObject product = allProducts.getJSONObject(i);
+						JSONObject attributes = product.getJSONObject("attributes");
+						String productName = attributes.getString("name");
 
-					String imageURL = getImage.getString("url");
+						JSONObject price = product.getJSONObject("price");
+						JSONArray image = product.getJSONArray("images");
 
-					System.out.println(productName);
-					Product product2 = new Product(productName, normalPriceFloat, imageURL, "A101");
-					allProductsA101.add(product2);
-					
-					
+						JSONObject getImage;
+
+						if (image.getJSONObject(0).getString("imageType").equals("product"))
+							getImage = image.getJSONObject(0);
+						else if (image.getJSONObject(1).getString("imageType").equals("product")) {
+							getImage = image.getJSONObject(1);
+						} else
+							getImage = image.getJSONObject(2);
+
+						String normalPrice = price.getString("normalStr");
+						String discountedPrice = price.getString("discountedStr");
+						String fixedNormalPrice = normalPrice.replace("₺", "").replace(",", ".");
+
+						float normalPriceFloat = Float.valueOf(fixedNormalPrice);
+
+						String imageURL = getImage.getString("url");
+
+						System.out.println(productName);
+						Product product2 = new Product(productName, normalPriceFloat, imageURL, "A101");
+						allProductsA101.add(product2);
+
+					} catch (Exception e) {
+
 					}
-					catch(Exception e) {
-						
-					}
-					
+
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
-		
 
 		}
 		return allProductsA101;

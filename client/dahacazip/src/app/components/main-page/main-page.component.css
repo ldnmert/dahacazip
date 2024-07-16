@@ -29,21 +29,19 @@
 }
 
 .dikdortgen {
-    width: 200px; /* Boyutlarınızı ayarlayın */
-    height: 540px; /* Sabit yükseklik */
-    border: 4px solid; /* Çerçeve */
-    /* margin-bottom: 10px; */
-     /* Dikey aralık */
+    width: 200px; 
+    height: 540px;
+    border: 4px solid; 
+  
      background-color: white;
     margin-top: 70px;
     
-    /* margin-right: 10px; */   
-     /* Sağ boşluk */
-    border-radius: 10px; /* Köşe yuvarlaklığı */
-    overflow-y: auto; /* Dikey scroll çubuğunu etkinleştir */
+ 
+    border-radius: 10px; 
+    overflow-y: auto; 
     padding: 10px;
-     /* İç dolgu ekle */
-    text-align: center; /* Yazıları ortala */
+ 
+    text-align: center; 
     font-family: Arial, sans-serif
 }
 
@@ -59,29 +57,29 @@
     background-color: #e9e6e6; /* Adjust scrollbar track color */
 }
 
-/* Her bir dikdörtgenin çerçeve rengini farklı yapmak için örnek renkler */
+
 .dikdortgen:nth-child(1) {
-    border-color: #f87538; /* Turuncu */
+    border-color: #f87538;
 }
 .dikdortgen:nth-child(2) {
-    border-color: #1ea0c8; /* Mor */
+    border-color: #1ea0c8;
 }
 .dikdortgen:nth-child(3) {
-    border-color: #0930a3; /* Mavi */
+    border-color: #0930a3; 
 }
 .dikdortgen:nth-child(4) {
-    border-color: #e80707; /* Yeşil */
+    border-color: #e80707; 
 }
 .dikdortgen:nth-child(5) {
-    border-color: #F4D03F; /* Sarı */
+    border-color: #F4D03F; 
 }
 
 .bilesen {
   
     display: flex;
-     /* Flexbox'u etkinleştir */
-    justify-content: space-between; /* Öğeler arasında eşit boşluk bırak */
-    flex-wrap: wrap; /* Yeterli alan olmadığında öğeleri sarma */
+ 
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 
@@ -92,23 +90,23 @@
     margin-bottom: 10px;
 }
 .dikdortgen:nth-child(1) .urun-kapsul {
-    border: 2px solid   #ea7114; /* Kırmızı */
+    border: 2px solid   #ea7114; 
 }
 
 .dikdortgen:nth-child(2) .urun-kapsul {
-    border: 2px solid #57b2f7; /* Yeşil */
+    border: 2px solid #57b2f7; 
 }
 
 .dikdortgen:nth-child(3) .urun-kapsul {
-    border: 2px solid #1212b5; /* Mavi */
+    border: 2px solid #1212b5;
 }
 
 .dikdortgen:nth-child(4) .urun-kapsul {
-    border: 2px solid #e81212; /* Sarı */
+    border: 2px solid #e81212; 
 }
 
 .dikdortgen:nth-child(5) .urun-kapsul {
-    border: 2px solid #020279; /* Mor */
+    border: 2px solid #020279; 
 }   
 
 
@@ -153,22 +151,22 @@
     margin-top: 10px;
     position: absolute;
     left: 12px;
-    width: 215px; /* Genişlik */
+    width: 215px; 
     
-    height: auto; /* Otomatik yükseklik ayarlaması */
+    height: auto;
 }
 .logoa101{
     margin-top: 11px;
     position: absolute;
-    left: 30.5%; /* Özel pozisyon değeri */
-    width: 145px; /* Genişlik */
+    left: 30.5%; 
+    width: 145px; 
     height: auto;
 }
 .logocarrefour{
     margin-top: 20px;
     position: absolute;
     left: 56%; 
-    width: 220px; /* Genişlik */
+    width: 220px;
     height: auto;
    
     
@@ -178,13 +176,13 @@
     margin-top: 5px;
     position: absolute;
     right: 25%;
-    width: 117px; /* Genişlik */
+    width: 117px; 
     height: auto;
 }
 .logosok{
     position: absolute;
     right: 5%;
-    width: 100px; /* Genişlik */
+    width: 100px; 
     height: auto;
 } 
 
@@ -210,7 +208,7 @@ input[type="text"] {
     border: 1px solid #ccc;
     border-radius: 5px 0 0 5px;
     outline: none;
-    width: 300px; /* Genişlik ayarı */
+    width: 300px; 
     font-size: 15px;
     font-family: Arial, Helvetica, sans-serif;
     
@@ -220,26 +218,26 @@ input[type="text"] {
 } 
 
 .search-btn {
-    padding: 0; /* Butonun içeriği (resim) için padding'i sıfırla */
-    background: none; /* Arka planı temizle */
+    padding: 0; 
+    background: none; 
     border: none;
     cursor: pointer;
 }
 
 .search-btn img {
-    width: 30px; /* İstediğiniz boyuta göre ayarlayabilirsiniz */
+    width: 30px; 
     height: auto;
 }
 
 button[type="submit"]:hover {
-    opacity: 0.7; /* Butona hover olduğunda opacity düşürme (opsiyonel) */
+    opacity: 0.7; 
 }
 
 .search-container{
     position: relative;
     display: flex;
-    /* background-color: #1212b5; */
-    justify-content: center; /* Yatayda ortala */
+    
+    justify-content: center; 
     z-index: 10;
     background-color: #f9f9f9;
     border-radius: 8px;

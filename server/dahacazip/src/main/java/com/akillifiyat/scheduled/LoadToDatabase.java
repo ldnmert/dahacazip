@@ -1,7 +1,6 @@
 package com.akillifiyat.scheduled;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.akillifiyat.MarketAPIS.A101API;
@@ -15,19 +14,20 @@ import com.akillifiyat.repository.ProductRepository;
 public class LoadToDatabase {
 
 	private MigrosAPI migrosAPI;
-	
+
 	private A101API a101API;
-	
+
 	private CarrefourAPI carrefourAPI;
-	
+
 	private SokAPI sokAPI;
-	
+
 	private ProductRepository productRepository;
-	
+
 	private DiscountProductRepository discountProductRepository;
-	
-	@Autowired
-	public LoadToDatabase(A101API a101API, CarrefourAPI carrefourAPI, SokAPI sokAPI, ProductRepository productRepostiroy, DiscountProductRepository discountProductRepository, MigrosAPI migrosAPI) {
+
+	public LoadToDatabase(A101API a101API, CarrefourAPI carrefourAPI, SokAPI sokAPI,
+			ProductRepository productRepostiroy, DiscountProductRepository discountProductRepository,
+			MigrosAPI migrosAPI) {
 		this.a101API = a101API;
 		this.carrefourAPI = carrefourAPI;
 		this.sokAPI = sokAPI;
@@ -36,11 +36,10 @@ public class LoadToDatabase {
 		this.migrosAPI = migrosAPI;
 	}
 
-
 //	@Scheduled(fixedRate = 3600)
-//	void qwe() {
+//	void loadDatabase() {
 //		sokAPI.getAllProducts();
+
 //	}
 
-	
 }

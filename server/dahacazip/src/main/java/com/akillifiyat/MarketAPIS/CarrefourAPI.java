@@ -93,30 +93,24 @@ public class CarrefourAPI {
 //		
 //		return DiscountProductProducts;
 //	}
-	
-	
-	
-		String[] numbers = {
-            "1015", "1025", "1045", "1098", "1065", "1070", "1102", "1061", "1174", "1234", 
-            "1239", "1111", "1121", "1275", "1223", "1159", "1186", "1209", "1493", "1009", 
-            "1939", "1948", "2538", "1940", "1963", "1454", "1484", "1412", "1418", "1411", 
-            "1481", "1040", "1311", "1318", "1356", "1390", "1389", "1349", "1348", "1385", 
-            "1038", "1962", "1875", "1873", "1899", "1858", "1847", "1915", "1613", "1591", 
-            "1602", "1627", "1557", "1658", "1652", "1598", "1675", "1710", "1736", "1757", 
-            "1772", "1785", "1805", "1831", "1838", "1729", "1821", "1820", "2305", "2313", 
-            "2341", "2287", "2330", "2202", "2234", "2195", "2076", "2239", "1964", "2025", 
-            "2149", "2127", "2054", "2342", "2115", "2190", "2105", "2186", "2537", "2138", 
-            "1261", "1270", "1266"
-        };
 
-		public List<Product> getAllProducts() {
-			int qwes = 0;
-			List<Product> list = new ArrayList();
-			
+	String[] numbers = { "1015", "1025", "1045", "1098", "1065", "1070", "1102", "1061", "1174", "1234", "1239", "1111",
+			"1121", "1275", "1223", "1159", "1186", "1209", "1493", "1009", "1939", "1948", "2538", "1940", "1963",
+			"1454", "1484", "1412", "1418", "1411", "1481", "1040", "1311", "1318", "1356", "1390", "1389", "1349",
+			"1348", "1385", "1038", "1962", "1875", "1873", "1899", "1858", "1847", "1915", "1613", "1591", "1602",
+			"1627", "1557", "1658", "1652", "1598", "1675", "1710", "1736", "1757", "1772", "1785", "1805", "1831",
+			"1838", "1729", "1821", "1820", "2305", "2313", "2341", "2287", "2330", "2202", "2234", "2195", "2076",
+			"2239", "1964", "2025", "2149", "2127", "2054", "2342", "2115", "2190", "2105", "2186", "2537", "2138",
+			"1261", "1270", "1266" };
 
-			WebDriver driver = new ChromeDriver(new ChromeOptions().addArguments("--headless"));
-			for(int w = 0 ; w < numbers.length;w++) {
-			driver.get("https://www.carrefoursa.com/unlu-mamuller-ve-tatlilar/c/"+ numbers[w] +"?q=%3AbestSeller&show=All");
+	public List<Product> getAllProducts() {
+		int qwes = 0;
+		List<Product> list = new ArrayList();
+
+		WebDriver driver = new ChromeDriver(new ChromeOptions().addArguments("--headless"));
+		for (int w = 0; w < numbers.length; w++) {
+			driver.get("https://www.carrefoursa.com/unlu-mamuller-ve-tatlilar/c/" + numbers[w]
+					+ "?q=%3AbestSeller&show=All");
 
 			List<WebElement> elements = driver.findElements(By.cssSelector(".product_click"));
 
@@ -130,18 +124,17 @@ public class CarrefourAPI {
 
 					String itemName = itemNameElement.getText();
 					String itemPriceSalt = (itemPriceElement.getAttribute("content"));
-					
-					   BigDecimal number = new BigDecimal(itemPriceSalt);
-				        
-				        BigDecimal formatted = number.setScale(2, RoundingMode.HALF_UP);
-					
-				    String itemPrice = formatted.toString();
-				    
-				    float floatPrice = Float.valueOf(itemPrice);
-					
+
+					BigDecimal number = new BigDecimal(itemPriceSalt);
+
+					BigDecimal formatted = number.setScale(2, RoundingMode.HALF_UP);
+
+					String itemPrice = formatted.toString();
+
+					float floatPrice = Float.valueOf(itemPrice);
+
 					String dataSrc = imgElement.getAttribute("data-src");
-				
-					
+
 					Product c = new Product(itemName, floatPrice, dataSrc, "CARREFOUR");
 					list.add(c);
 
@@ -149,11 +142,10 @@ public class CarrefourAPI {
 					e.printStackTrace();
 				}
 			}
-			
-			
+
 		}
-			driver.quit();
-			return list;
-		}
+		driver.quit();
+		return list;
+	}
 
 }

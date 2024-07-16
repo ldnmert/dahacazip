@@ -1,7 +1,5 @@
 package com.akillifiyat.entity;
 
-
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,10 +27,11 @@ public class DiscountProduct {
 	Float priceWithoutDiscount;
 
 	String image;
-	
+
 	String marketName;
 
-	public DiscountProduct(String nameproduct, Float price, Float priceWithoutDiscount, String image, String marketName) {
+	public DiscountProduct(String nameproduct, Float price, Float priceWithoutDiscount, String image,
+			String marketName) {
 
 		this.nameproduct = nameproduct;
 		this.price = price;

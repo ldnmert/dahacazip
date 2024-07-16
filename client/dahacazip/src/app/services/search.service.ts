@@ -15,20 +15,20 @@ export class SearchService {
 
 
   getWantedProducts(searchTerm: string, filters: any = {}): Observable<Product[]> {
-    // HTTP isteği için kullanılacak parametreler
+
     let params = new HttpParams().set('searchTerm', searchTerm).set('limit', 6);
 
-    // Filtreleme seçenekleri varsa, parametrelere ekle
+ 
     if (filters) {
       Object.keys(filters).forEach(key => {
-        if (filters[key]) { // Boş olmayan filtreler eklenir
+        if (filters[key]) { 
           params = params.set(key, filters[key]); 
         }
       });
     }
     console.log("HTTP isteği gönderilecek parametreler:", params.toString());
 
-    // HTTP isteği gönder ve Observable<Product[]> olarak sonucu döndür
+
     return this.http.get<Product[]>(`${this.apiUrl}/search`, { params });
   }
 
