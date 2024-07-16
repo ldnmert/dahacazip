@@ -1,6 +1,6 @@
 # Market Fiyat Kıyaslama Uygulaması
 
-Bu proje, dört büyük marketin ürün fiyatlarını kıyaslayan bir web uygulamasıdır. Proje, belirli bir saatte marketlerden veri çekmek için **Spring Scheduling** yapısını kullanır. **Selenium** ile alınan veriler, **MySQL** veritabanına kaydedilir. Backend **Spring Boot** ile, frontend ise **Angular** ile geliştirilmiştir.
+Bu proje, dört büyük marketin ürün fiyatlarını kıyaslayan bir web uygulamasıdır. Proje, belirli bir saatte marketlerden veri çekmek için **Spring Scheduling** yapısını kullanır. **Selenium** ile alınan veriler, **MySQL** veritabanına kaydedilir. Backend **Spring Boot** ile, frontend ise **Angular** ile geliştirilmiştir. (Görseller en aşağıdadır.)
 
 ## **Özellikler**
 
